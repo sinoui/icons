@@ -1,10 +1,22 @@
 # icons
 
-这是由[ts-lib-scripts](https://github.com/sinoui/ts-lib-scripts)创建的TypeScript库项目。
+这是由[ts-lib-scripts](https://github.com/sinoui/ts-lib-scripts)创建的 TypeScript 库项目。
 
 ## 本地开发
 
 项目中有以下有用的命令。
+
+### `yarn build:js`
+
+编译脚本代码
+
+### `yarn src:download`
+
+下载图标
+
+### `yarn src:genComp`
+
+生成组件
 
 ### `yarn start`
 

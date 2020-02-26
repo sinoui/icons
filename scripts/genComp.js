@@ -6,7 +6,6 @@ import path from 'path';
 import rimraf from 'rimraf';
 import Mustache from 'mustache';
 import util from 'util';
-import intersection from 'lodash/intersection';
 import glob from 'glob';
 import SVGO from 'svgo';
 import Queue from './modules/waterfall/Queue';
@@ -118,6 +117,7 @@ function removeNoise(input, prevInput = null) {
 }
 
 export async function cleanPaths({ svgPath, data }) {
+  console.log(`cleanPaths:`, svgPath, data);
   // Remove hardcoded color fill before optimizing so that empty groups are removed
   const input = data
     .replace(/ fill="#010101"/g, '')
@@ -196,6 +196,8 @@ export async function main(options) {
   try {
     let originalWrite;
 
+    console.log('fileName:', options.r);
+
     options.glob = options.glob || '/**/*.svg';
     options.innerPath = options.innerPath || '';
     options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
@@ -242,19 +244,6 @@ export async function main(options) {
 
     queue.push(svgPaths);
     await queue.wait({ empty: true });
-
-    let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.tsx'));
-    legacyFiles = legacyFiles.map((file) => path.basename(file));
-    let generatedFiles = await globAsync(path.join(options.outputDir, '*.tsx'));
-    generatedFiles = generatedFiles.map((file) => path.basename(file));
-
-    if (intersection(legacyFiles, generatedFiles).length > 0) {
-      console.warn(intersection(legacyFiles, generatedFiles));
-      throw new Error('Duplicated icons in legacy folder');
-    }
-
-    await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
-    await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
 
     await generateIndex(options);
 

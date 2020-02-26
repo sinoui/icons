@@ -16,7 +16,9 @@
     "doc:dev": "docz dev",
     "doc:build": "docz build",
     "doc:publish": "docz build && gh-pages -d .docz/dist",
-    "src:download": "babel scripts --out-dir lib --copy-files"
+    "build:js": "babel scripts --out-dir lib --copy-files",
+    "src:download": "node lib/download.js",
+    "src:genComp": "node lib/genComp --output-dir src --svg-dir material-icons"
   },
   "prettier": {
     "printWidth": 80,
