@@ -82,18 +82,6 @@ export function getComponentName(destPath) {
   return parts.join('');
 }
 
-async function generateIndex(options) {
-  const files = await globAsync(path.join(options.outputDir, '*.tsx'));
-  const index = files
-    .map((file) => {
-      const typename = path.basename(file).replace('.js', '');
-      return `export { default as ${typename} } from './${typename}';\n`;
-    })
-    .join('');
-
-  await fse.writeFile(path.join(options.outputDir, 'index.js'), index);
-}
-
 // Noise introduced by Google by mistake
 const noises = [
   ['="M0 0h24v24H0V0zm0 0h24v24H0V0z', '="'],
@@ -196,14 +184,11 @@ export async function main(options) {
   try {
     let originalWrite;
 
-    console.log('fileName:', options.r);
-
     options.glob = options.glob || '/**/*.svg';
     options.innerPath = options.innerPath || '';
     options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
     options.disableLog = options.disableLog || false;
 
-    // Disable console.log opt, used for tests
     if (options.disableLog) {
       originalWrite = process.stdout.write;
       process.stdout.write = () => {};
@@ -211,7 +196,7 @@ export async function main(options) {
 
     rimraf.sync(`${options.outputDir}/*.tsx`); // Clean old files
 
-    let renameFilter = options.renameFilter;
+    let { renameFilter } = options;
     if (typeof renameFilter === 'string') {
       // eslint-disable-next-line global-require, import/no-dynamic-require
       renameFilter = require(renameFilter).default;
@@ -244,8 +229,7 @@ export async function main(options) {
 
     queue.push(svgPaths);
     await queue.wait({ empty: true });
-
-    await generateIndex(options);
+    console.log(options);
 
     if (options.disableLog) {
       // bring back stdout
@@ -257,7 +241,7 @@ export async function main(options) {
 }
 
 if (require.main === module) {
-  const argv = yargs
+  const { argv } = yargs
     .usage("Build JSX components from SVG's.\nUsage: $0")
     .demand('output-dir')
     .describe('output-dir', 'Directory to output jsx components')
@@ -272,12 +256,12 @@ if (require.main === module) {
     )
     .describe(
       'file-suffix',
-      'Filter only files ending with a suffix (pretty much only for @material-ui/icons)',
+      'Filter only files ending with a suffix (pretty much only for @sinoui/icons)',
     )
     .describe(
       'rename-filter',
       `Path to JS module used to rename destination filename and path.
         Default: ${RENAME_FILTER_DEFAULT}`,
-    ).argv;
+    );
   main(argv);
 }

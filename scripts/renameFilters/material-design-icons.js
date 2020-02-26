@@ -3,7 +3,7 @@ function myDestRewriter(svgPathObj) {
 
   fileName = fileName
     .replace(/_([0-9]+)px\.svg/, '.tsx')
-    .replace(/(^.)|(_)(.)/g, (match, p1, p2, p3) => (p1 || p3).toUpperCase());
+    .replace(/(^.)|(_)(.)/g, (_match, p1, _p2, p3) => (p1 || p3).toUpperCase());
 
   if (fileName.indexOf('3dRotation') === 0) {
     fileName = `ThreeD${fileName.slice(2)}`;
