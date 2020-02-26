@@ -16,7 +16,7 @@
     "doc:dev": "docz dev",
     "doc:build": "docz build",
     "doc:publish": "docz build && gh-pages -d .docz/dist",
-    "src:download": "babel --config-file ./babel.config.js --out-dir scripts/dist scripts/"
+    "src:download": "babel scripts --out-dir lib --copy-files"
   },
   "prettier": {
     "printWidth": 80,
@@ -63,6 +63,7 @@
   "devDependencies": {
     "@babel/cli": "^7.7.5",
     "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "babel-loader": "^8.0.6",
     "husky": "^3.1.0",
     "identity-obj-proxy": "^3.0.0",

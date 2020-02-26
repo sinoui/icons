@@ -54,7 +54,8 @@ async function run() {
     console.log('run', argv);
     await fse.ensureDir(path.join(__dirname, '../material-icons'));
     // const response = await fetch('https://fonts.google.com/metadata/icons');
-    const text = fse.readFileSync('./icons-data.txt');
+    const text = fse.readFileSync(path.join(__dirname, 'icons-data.txt'));
+    console.log(text);
     const data = JSON.parse(text.replace(")]}'", ''));
     let { icons } = data;
     icons = icons.map((icon, index) => ({ index, ...icon }));
