@@ -66,7 +66,7 @@ const svgo = new SVGO({
 });
 
 /**
- * Return Pascal-Cased component name.
+ * 生成组件名称
  *
  * @param {string} destPath
  * @returns {string} class name
@@ -75,7 +75,7 @@ export function getComponentName(destPath) {
   const splitregex = new RegExp(`[\\${path.sep}-]+`);
 
   const parts = destPath
-    .replace('.js', '')
+    .replace('.tsx', '')
     .split(splitregex)
     .map((part) => part.charAt(0).toUpperCase() + part.substring(1));
 
@@ -105,7 +105,6 @@ function removeNoise(input, prevInput = null) {
 }
 
 export async function cleanPaths({ svgPath, data }) {
-  console.log(`cleanPaths:`, svgPath, data);
   // Remove hardcoded color fill before optimizing so that empty groups are removed
   const input = data
     .replace(/ fill="#010101"/g, '')
