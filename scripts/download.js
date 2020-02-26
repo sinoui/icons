@@ -1,6 +1,7 @@
 import fetch from 'cross-fetch';
 import fse from 'fs-extra';
 import path from 'path';
+import fs from 'fs';
 import yargs from 'yargs';
 import Queue from './modules/waterfall/Queue';
 import sleep from './modules/waterfall/sleep';
@@ -22,6 +23,10 @@ const themeFileMap = {
   sharp: '_sharp',
 };
 
+/**
+ * 下载图标
+ * @param {*} icon
+ */
 function downloadIcon(icon) {
   console.log(`downloadIcon ${icon.index}: ${icon.name}`);
 
@@ -53,9 +58,11 @@ async function run() {
       .describe('start-after', 'Resume at the following index');
     console.log('run', argv);
     await fse.ensureDir(path.join(__dirname, '../material-icons'));
-    // const response = await fetch('https://fonts.google.com/metadata/icons');
-    const text = fse.readFileSync(path.join(__dirname, 'icons-data.txt'));
-    console.log(text);
+    // 读取图标文件数据
+    const text = fs.readFileSync(
+      path.join(__dirname, 'icons-data.txt'),
+      'utf8',
+    );
     const data = JSON.parse(text.replace(")]}'", ''));
     let { icons } = data;
     icons = icons.map((icon, index) => ({ index, ...icon }));
