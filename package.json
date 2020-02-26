@@ -7,18 +7,17 @@
   "module": "dist/icons.esm.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "start": "ts-lib-tools watch",
     "test": "ts-lib-tools test",
-    "build": "ts-lib-tools build",
+    "build": "ts-lib-tools build --simple",
     "format": "ts-lib-tools format",
     "lint": "ts-lib-tools lint",
-    "prepublishOnly": "ts-lib-tools build",
+    "release": "yarn build && yarn publish dist",
     "doc:dev": "docz dev",
     "doc:build": "docz build",
     "doc:publish": "docz build && gh-pages -d .docz/dist",
     "build:js": "babel scripts --out-dir lib --copy-files",
-    "src:download": "node lib/download.js",
-    "src:genComp": "node lib/genComp --output-dir src --svg-dir material-icons --rename-filter ./renameFilters/material-design-icons"
+    "src:download": "babel-node --presets @babel/env --plugins @babel/plugin-proposal-class-properties scripts/download.js",
+    "src:genComp": "babel-node scripts/genComp.js --output-dir src --svg-dir material-icons --rename-filter ./renameFilters/material-design-icons"
   },
   "prettier": {
     "printWidth": 80,
@@ -49,38 +48,55 @@
   "peerDependencies": {
     "react": ">=16.8.0"
   },
-  "files": [
-    "dist",
-    "assets"
-  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
-    "@babel/plugin-transform-object-assign": "^7.8.3",
     "@babel/polyfill": "^7.8.3",
     "@babel/runtime": "^7.8.4",
-    "babel-plugin-optimize-clsx": "^2.6.0",
     "cross-fetch": "^3.0.4",
     "fs-extra": "^8.1.0",
     "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
-    "@babel/core": "^7.7.5",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "babel-loader": "^8.0.6",
-    "husky": "^3.1.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest-styled-components": "^7.0.0",
-    "lint-staged": "^9.5.0",
-    "mustache": "^4.0.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.4.1",
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "babel-plugin-react-remove-properties": "^0.3.0",
+    "css-loader": "^3.4.2",
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0",
+    "gh-pages": "^2.2.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
-    "react-docgen-typescript-loader": "^3.6.0",
+    "react-dom": "^16.12.0",
     "react-test-renderer": "^16.12.0",
-    "rimraf": "^3.0.2",
-    "styled-components": "^5.0.0",
-    "ts-lib-tools": "^0.9.5",
-    "typescript": "^3.7.3",
-    "docz": "^1.3.2",
-    "docz-theme-default": "^1.2.0"
+    "style-loader": "^1.1.3",
+    "ts-lib-tools": "^0.10.1",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.8.2",
+    "webpack-docz-ghpages-plugin": "^0.10.0"
   }
 }

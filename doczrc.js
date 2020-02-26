@@ -22,9 +22,10 @@ function getBaseUrl() {
 }
 
 export default {
-  title: 'icons',
+  title: 'icons2',
   codeSandbox: false,
   typescript: true,
+  propsParser: false,
   files: ['**/*.mdx'],
   public: './docs/assets',
   menu: ['首页'],
@@ -69,8 +70,8 @@ export default {
       .end();
 
     config.watchOptions({
-        ignored: ['node_modules', 'dist', '.cache', 'coverage', '.docz']
-      });
+      ignored: ['node_modules', 'dist', '.cache', 'coverage', '.docz'],
+    });
 
     return config;
   },

@@ -4,11 +4,8 @@ node_modules
 # testing
 coverage
 
-# production
-build
-dist
-types/
-!**/src/types
+# source code
+src
 
 # cache
 .cache
@@ -32,4 +29,3 @@ yarn-error.log*
 lerna-debug.log*
 .progress-estimator
 
-/material-icons
