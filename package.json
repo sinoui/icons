@@ -17,7 +17,7 @@
     "doc:publish": "docz build && gh-pages -d .docz/dist",
     "build:js": "babel scripts --out-dir lib --copy-files",
     "src:download": "babel-node --presets @babel/env --plugins @babel/plugin-proposal-class-properties scripts/download.js",
-    "src:genComp": "babel-node scripts/genComp.js --output-dir src --svg-dir material-icons --rename-filter ./renameFilters/material-design-icons"
+    "src:genComp": "babel-node --presets @babel/env --plugins @babel/plugin-proposal-class-properties scripts/genComp.js --output-dir src --svg-dir material-icons --rename-filter ./renameFilters/material-design-icons"
   },
   "prettier": {
     "printWidth": 80,
