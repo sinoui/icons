@@ -1,14 +1,15 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 import fse from 'fs-extra';
 import yargs from 'yargs';
 import path from 'path';
 import rimraf from 'rimraf';
 import Mustache from 'mustache';
-import Queue from './modules/waterfall/Queue';
 import util from 'util';
 import intersection from 'lodash/intersection';
 import glob from 'glob';
 import SVGO from 'svgo';
+import Queue from './modules/waterfall/Queue';
 
 const globAsync = util.promisify(glob);
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
@@ -223,7 +224,7 @@ export async function main(options) {
 
     const [svgPaths, template] = await Promise.all([
       globAsync(path.join(options.svgDir, options.glob)),
-      fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
+      fse.readFile(path.join(__dirname, 'templateSvgIcon.tsx'), {
         encoding: 'utf8',
       }),
     ]);

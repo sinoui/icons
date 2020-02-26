@@ -69,10 +69,12 @@
     "identity-obj-proxy": "^3.0.0",
     "jest-styled-components": "^7.0.0",
     "lint-staged": "^9.5.0",
+    "mustache": "^4.0.0",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-test-renderer": "^16.12.0",
+    "rimraf": "^3.0.2",
     "styled-components": "^5.0.0",
     "ts-lib-tools": "^0.9.5",
     "typescript": "^3.7.3"
