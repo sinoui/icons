@@ -1,12 +1,52 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
+import styled from 'styled-components';
 import Icon from './Icon';
 
+const IconDisplayLayout = styled.div`
+  width: 120px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > p {
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    width: 96px;
+    text-align: center;
+  }
+`;
+
+const IconWrapper = styled.div`
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme.palette.background.paper};
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  }
+`;
+
 export default function IconDisplay(props) {
-  const { children, className } = props;
+  const { children, className, onClick } = props;
+
   return (
-    <div style={{ width: 48, height: 56 }}>
-      <Icon className={className}>{children}</Icon>
+    <IconDisplayLayout>
+      <IconWrapper onClick={() => onClick(children)}>
+        <Icon className={className}>{children}</Icon>
+      </IconWrapper>
       <p>{children}</p>
-    </div>
+    </IconDisplayLayout>
   );
 }
