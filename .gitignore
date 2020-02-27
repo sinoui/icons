@@ -32,4 +32,6 @@ yarn-error.log*
 lerna-debug.log*
 .progress-estimator
 
+lib
+
 /material-icons
