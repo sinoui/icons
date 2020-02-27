@@ -39,14 +39,14 @@ const IconWrapper = styled.div`
 `;
 
 export default function IconDisplay(props) {
-  const { children, className, onClick } = props;
+  const { name, title, className, onClick } = props;
 
   return (
     <IconDisplayLayout>
-      <IconWrapper onClick={() => onClick(children)}>
-        <Icon className={className}>{children}</Icon>
+      <IconWrapper onClick={() => onClick(name)}>
+        <Icon className={className}>{name}</Icon>
       </IconWrapper>
-      <p>{children}</p>
+      <p>{title}</p>
     </IconDisplayLayout>
   );
 }

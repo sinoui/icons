@@ -7,7 +7,7 @@ import calcColor from './calcColor';
 
 const SubTileLayout = styled.div`
   background-color: ${(props) => props.theme.palette.background.snackbar};
-  height: 48px;
+  min-height: 48px;
   padding: 12px 16px;
   color: #fff;
   box-sizing: border-box;
@@ -56,7 +56,7 @@ export default function IconInfoDialog(props) {
     if (iconType === 'filled') {
       return 'material-icons';
     }
-    return `material-icons-iconType`;
+    return `material-icons-${iconType}`;
   }, [iconType]);
 
   return (
