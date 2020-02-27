@@ -1,8 +1,52 @@
----
-name: 开始
-route: /
----
+# @sinoui/icons
 
-# 开始使用
+@sinoui/icons 集成了[Material Design](https://material.io/resources/icons/?style=baseline)提供的 1100+个图标，均为 svg 格式图标。
+@sinoui/icons 中所有图标的实现，均符合[Material Design | Icon](https://material.io/design/iconography/system-icons.html#)的设计规范。
 
-在这里写项目使用文档。
+## 图标使用
+
+首先需要安装依赖
+
+```shell
+yarn add @sinoui/icons
+```
+
+由于图标组件的内部实现使用 SvgIcon，用法及相关属性与其保持一致，更多详细使用方式可参考[SvgIcon 官方文档]()。
+
+具体使用时，可先查找需要使用的图标，确定图标名称，然后在具体文件中引入使用：
+
+```tsx
+import Close from '@sinoui/icons/Close';
+```
+
+按照最新的 Material Design 标准，图标分成以下风格：
+
+- filled
+- outlined
+- rounded
+- two-tone
+- sharp
+
+每种图标均有这五种风格。
+
+可能不同风格的图标是不一样的，也可能是一样的。默认提供 filled 风格的，不同风格的图标引用方式也不一样的：
+
+```tsx
+import Close from '@sinoui/icons/Close';
+import CloseOutlined from '@sinoui/icons/CloseOutlined';
+import CloseSharp from '@sinoui/icon/CloseSharp';
+import CloseRounded from '@sinoui/icons/CloseRounded';
+import CloseTowTone from '@sinoui/icons/CloseTwoTone';
+```
+
+## 图标查找
+
+如何找到我们想要的图标？我们提供以下两种方式：
+
+方法一：
+
+我们可以在[material icons](https://material.io/resources/icons/?style=baseline)中输入关键字，找到我们需要的图标，然后将图标名称转化为“驼峰式”组件名称即可直接使用。
+
+方法二：
+
+在下面输入图标关键字，进行图标查找，找到需要的图标时，点击图标查看其具体使用方式。
