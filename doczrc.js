@@ -31,7 +31,7 @@ export default {
   menu: ['教程'],
   wrapper: 'docs/Wrapper.tsx',
   indexHtml: 'docs/index.html',
-  base: '/',
+  base: getBaseUrl(),
   onCreateWebpackChain: (config) => {
     // 配置webpack的方式：[webpack-chain](https://github.com/neutrinojs/webpack-chain)
 
