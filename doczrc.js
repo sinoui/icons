@@ -28,7 +28,7 @@ export default {
   propsParser: false,
   files: ['**/*.mdx'],
   public: './docs/assets',
-  menu: ['首页'],
+  menu: ['教程'],
   wrapper: 'docs/Wrapper.tsx',
   indexHtml: 'docs/index.html',
   base: '/',
