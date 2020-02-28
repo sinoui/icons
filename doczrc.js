@@ -22,7 +22,7 @@ function getBaseUrl() {
 }
 
 export default {
-  title: 'icons2',
+  title: 'icons',
   codeSandbox: false,
   typescript: true,
   propsParser: false,
@@ -31,7 +31,7 @@ export default {
   menu: ['首页'],
   wrapper: 'docs/Wrapper.tsx',
   indexHtml: 'docs/index.html',
-  base: getBaseUrl(),
+  base: '/',
   onCreateWebpackChain: (config) => {
     // 配置webpack的方式：[webpack-chain](https://github.com/neutrinojs/webpack-chain)
 

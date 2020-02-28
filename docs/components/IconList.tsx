@@ -8,29 +8,45 @@ import filterIcons from './filterIconUtils';
 import IconDisplay from './IconDisplay';
 import transferName from './transferName';
 import IconInfoDialog from './IconInfoDialog';
+import getIconCategories from './getIconCategories';
+import IconListStyle from './IconListStyle';
 
-const Layout = styled.div``;
+const categories = getIconCategories();
 
 const StyledDialog = styled(Dialog)`
   width: 600px;
-`;
-
-const PageHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-
-  > .sinoui-input-wrapper {
-    width: 100%;
-    margin-bottom: 16px;
-  }
 `;
 
 const PageContent = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
+
+const Category = React.memo(
+  ({ icons, categoryName, onIconClick, className, getIconName }: any) => {
+    const iconsInCategory = icons.filter((icon) =>
+      icon.categories.includes(categoryName.toLocaleLowerCase()),
+    );
+
+    return iconsInCategory.length > 0 ? (
+      <div className="category">
+        <hr />
+        <h3>{categoryName}</h3>
+        <PageContent>
+          {iconsInCategory.map((icon) => (
+            <IconDisplay
+              key={icon.name}
+              onClick={onIconClick}
+              className={className}
+              name={icon.name}
+              title={transferName(getIconName(icon.name))}
+            />
+          ))}
+        </PageContent>
+      </div>
+    ) : null;
+  },
+);
 
 export default function IconList() {
   const [selectedIconName, setSelectedIconName] = useState('');
@@ -42,10 +58,10 @@ export default function IconList() {
     setOpen(false);
   };
 
-  const onIconClick = (iconName) => {
+  const onIconClick = useCallback((iconName) => {
     setSelectedIconName(iconName);
     setOpen(true);
-  };
+  }, []);
 
   const handleIconTypeChange = useCallback((_event, value) => {
     setIconType(value);
@@ -86,9 +102,14 @@ export default function IconList() {
   const renderIcons = useMemo(() => filterIcons(filterValue), [filterValue]);
 
   return (
-    <Layout>
-      <PageHeader>
-        <TextInput value={filterValue} onChange={handleInputChange} />
+    <div>
+      <IconListStyle />
+      <div className="page-header">
+        <TextInput
+          value={filterValue}
+          onChange={handleInputChange}
+          placeholder="输入关键字查找图标"
+        />
         <RadioGroup value={iconType} onChange={handleIconTypeChange}>
           <Radio value="filled">Filled</Radio>
           <Radio value="outlined">Outlined</Radio>
@@ -96,19 +117,20 @@ export default function IconList() {
           <Radio value="sharp">Sharp</Radio>
           <Radio value="two-tone">Two-Tone</Radio>
         </RadioGroup>
-      </PageHeader>
+      </div>
 
-      <PageContent>
-        {renderIcons.map((icon) => (
-          <IconDisplay
-            key={icon.name}
-            onClick={onIconClick}
+      <div>
+        {categories.map((category) => (
+          <Category
+            key={category}
+            categoryName={category}
+            onIconClick={onIconClick}
             className={className}
-            name={icon.name}
-            title={transferName(getIconName(icon.name))}
+            getIconName={getIconName}
+            icons={renderIcons}
           />
         ))}
-      </PageContent>
+      </div>
 
       <StyledDialog open={open} showCloseIcon onRequestClose={onRequestClose}>
         <DialogTitle>{title}</DialogTitle>
@@ -118,6 +140,6 @@ export default function IconList() {
           iconType={iconType}
         />
       </StyledDialog>
-    </Layout>
+    </div>
   );
 }
