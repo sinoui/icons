@@ -1,11 +1,19 @@
 {
   "name": "@sinoui/icons",
-  "version": "0.1.0",
+  "version": "1.0.0-beta.1",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/icons.umd.production.js",
   "module": "dist/icons.esm.js",
   "typings": "dist/index.d.ts",
+  "homepage": "https://sinoui.github.io/icons",
+  "bugs": {
+    "url": "https://github.com/sinoui/icons/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinoui/icons.git"
+  },
   "scripts": {
     "test": "ts-lib-tools test",
     "build": "ts-lib-tools build --simple",
@@ -67,6 +75,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
     "@babel/runtime": "^7.8.4",
+    "@sinoui/core": "^1.0.0-beta.2",
     "cross-fetch": "^3.0.4",
     "fs-extra": "^8.1.0",
     "yargs": "^15.1.0"
