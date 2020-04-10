@@ -1,5 +1,6 @@
 import React from 'react';
 import SvgIcon from '@sinoui/core/SvgIcon';
+import type { SvgIconProps } from '@sinoui/core/SvgIcon';
 
 /**
  * 创建SVG图标
@@ -8,7 +9,7 @@ import SvgIcon from '@sinoui/core/SvgIcon';
  */
 export default function createSvgIcon(path: any, displayName: string) {
   const Component = React.memo(
-    React.forwardRef((props, ref) => (
+    React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
       <SvgIcon data-testid={`${displayName}Icon`} ref={ref} {...props}>
         {path}
       </SvgIcon>
