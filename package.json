@@ -1,6 +1,6 @@
 {
   "name": "@sinoui/icons",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/icons.umd.production.js",
