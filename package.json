@@ -73,7 +73,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@sinoui/core": "^1.0.0-beta.65"
+    "@sinoui/core": "^1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

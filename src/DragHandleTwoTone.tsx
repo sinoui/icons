@@ -3,4 +3,5 @@ import createSvgIcon from './helpers/createSvgIcon';
 
 export default createSvgIcon(
   <path d="M4 9h16v2H4zm0 4h16v2H4z" />,
-  'DragHandleTwoTone');
+  'DragHandleTwoTone',
+);
