@@ -1,6 +1,6 @@
 {
   "name": "@sinoui/icons",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha.0",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/icons.umd.production.js",
@@ -19,7 +19,7 @@
     "build": "ts-lib-tools build --simple",
     "format": "ts-lib-tools format",
     "lint": "ts-lib-tools lint",
-    "release": "yarn build && yarn publish dist",
+    "release": "yarn build && yarn publish dist --alpha",
     "doc:dev": "docz dev",
     "doc:build": "docz build",
     "doc:publish": "docz build && gh-pages -d .docz/dist",
@@ -72,9 +72,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@sinoui/core": "^1.0.1"
-  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/node": "^7.8.4",
@@ -85,7 +82,7 @@
     "@testing-library/react": "^9.4.1",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/classnames": "^2.2.9",
-    "@types/react": "^16.9.23",
+    "@types/react": "^18.0.26",
     "@types/react-dom": "^16.9.5",
     "@types/styled-components": "^5.0.1",
     "babel-plugin-react-remove-properties": "^0.3.0",
@@ -116,5 +113,9 @@
     "typescript": "^3.8.2",
     "webpack-docz-ghpages-plugin": "^0.10.0",
     "yargs": "^15.1.0"
+  },
+  "dependencies": {
+    "clsx": "^1.2.1",
+    "tslib": "^2.4.1"
   }
 }
