@@ -19,7 +19,7 @@
     "build": "ts-lib-tools build --simple",
     "format": "ts-lib-tools format",
     "lint": "ts-lib-tools lint",
-    "release": "yarn build && yarn publish dist --alpha",
+    "release": "yarn build && yarn publish dist --non-interactive --tag alpha",
     "doc:dev": "docz dev",
     "doc:build": "docz build",
     "doc:publish": "docz build && gh-pages -d .docz/dist",
