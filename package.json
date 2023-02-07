@@ -1,6 +1,6 @@
 {
   "name": "@sinoui/icons",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "license": "MIT",
   "main": "dist/index.js",
   "umd:main": "dist/icons.umd.production.js",
@@ -116,6 +116,7 @@
   },
   "dependencies": {
     "clsx": "^1.2.1",
-    "tslib": "^2.4.1"
+    "tslib": "^2.4.1",
+    "@babel/runtime": "^7.20.6"
   }
 }
